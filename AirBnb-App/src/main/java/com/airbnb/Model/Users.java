@@ -15,8 +15,12 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
@@ -24,6 +28,8 @@ import lombok.Setter;
 @Data
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Users {
 
 	@Id
@@ -44,13 +50,16 @@ public class Users {
 	@JoinTable(name="UserRoles",
 		joinColumns = @JoinColumn(name="user_Id", referencedColumnName = "userid"),
 		inverseJoinColumns = @JoinColumn(name="role_Id", referencedColumnName = "roleId"))
+	@JsonIgnore
 	private List<Roles> roles=new ArrayList<>();
 	
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "users")
+	@JsonIgnore
 	private List<Bookings> allBookings=new ArrayList<>();
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+	@JsonIgnore
 	private List<Listing> listing=new ArrayList<>();
 	
 	
