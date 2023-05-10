@@ -1,6 +1,8 @@
 package com.airbnb.Service;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,6 +67,46 @@ public class UsersServiceImpl implements UsersService {
 		Users savedUsers=	usersRepository.save(user);
 		
 		return modelMapper.map(savedUsers, UsersDTO.class);
+	}
+
+	@Override
+	public UsersDTO useGetById(Integer userId) throws UsersNotfoundException {
+		Users users=usersRepository.findById(userId).orElseThrow(()->new UsersNotfoundException("No user is present with this id- "+userId));
+		
+		return modelMapper.map(users, UsersDTO.class);
+		
+	}
+
+	@Override
+	public List<UsersDTO> allUser() throws UsersNotfoundException {
+		List<Users> users=usersRepository.findAll();
+	 List<UsersDTO> userdtos=users.stream().map((u)->modelMapper.map(u, UsersDTO.class)).collect(Collectors.toList());
+		
+		return userdtos;
+	}
+
+	@Override
+	public UsersDTO updateUser(UsersDTO usersDTO, Integer userId) throws UsersNotfoundException {
+		Users users=usersRepository.findById(userId).orElseThrow(()->new UsersNotfoundException("No user is present with this id- "+userId));
+		
+		users.setEmail(usersDTO.getEmail());
+		users.setFirstname(usersDTO.getFirstname());
+		users.setLastname(usersDTO.getLastname());
+		users.setPassword(passwordEncoder.encode(usersDTO.getPassword()));
+
+		Users updateUser= usersRepository.save(users);
+		
+		return modelMapper.map(updateUser, UsersDTO.class);
+		
+	}
+
+	@Override
+	public String deleteUser(Integer userId) throws UsersNotfoundException {
+		Users users=usersRepository.findById(userId).orElseThrow(()->new UsersNotfoundException("No user is present with this id- "+userId));
+		users.getRoles().clear();
+		
+		usersRepository.delete(users);
+		return "User deleted";
 	}
 	
 	
