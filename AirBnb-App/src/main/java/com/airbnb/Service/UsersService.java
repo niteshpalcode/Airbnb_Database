@@ -7,5 +7,7 @@ import com.airbnb.Exception.UsersNotfoundException;
 public interface UsersService {
 	
 	public UsersDTO registerNewUser(UsersDTO userDto) throws UsersNotfoundException;
+	
+	public UsersDTO registerAdmin(UsersDTO usersDTO) throws UsersNotfoundException;
 
 }
