@@ -47,7 +47,7 @@ public class Listing {
 	@JoinColumn(name = "hostId")
 	private Users user;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
 	@JoinColumn(name = "locationId")
 	private Location location;
 	
