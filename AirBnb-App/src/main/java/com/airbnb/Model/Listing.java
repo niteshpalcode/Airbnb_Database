@@ -14,6 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -51,12 +52,13 @@ public class Listing {
 	@JoinColumn(name = "locationId")
 	private Location location;
 	
-	@ManyToMany
-	@JoinTable(name="ListingAmenities",
-		joinColumns = @JoinColumn(name="listing_Id", referencedColumnName = "listingId"),
-		inverseJoinColumns = @JoinColumn(name="amenity_id", referencedColumnName = "amenityId"))
-	private List<Amenities> amenities=new ArrayList<>();
+//	@ManyToMany
+//	@JoinTable(name="ListingAmenities",
+//		joinColumns = @JoinColumn(name="listing_Id", referencedColumnName = "listingId"),
+//		inverseJoinColumns = @JoinColumn(name="amenity_id", referencedColumnName = "amenityId"))
+//	private List<Amenities> amenities=new ArrayList<>();
 	
-	
+	@OneToMany
+	private List<ListingAmenities> listingAmenities;
 	
 }

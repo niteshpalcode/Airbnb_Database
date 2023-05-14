@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -34,6 +35,8 @@ public class Amenities {
 	@Column(name ="amenity_name" )
 	private String amenityName;
 	
+	@OneToMany
+	private List<ListingAmenities> listingAmenities;
 	
 	
 

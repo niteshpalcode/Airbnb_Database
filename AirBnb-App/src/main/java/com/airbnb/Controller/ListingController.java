@@ -19,6 +19,7 @@ import com.airbnb.Exception.ListingNotFoundException;
 import com.airbnb.Exception.LocationNotFoundException;
 import com.airbnb.Exception.UsersNotfoundException;
 import com.airbnb.Model.ListingResponse;
+import com.airbnb.Security.AppConstant;
 import com.airbnb.Service.ListingService;
 
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
@@ -66,8 +67,8 @@ public class ListingController {
 	}
 	@GetMapping("/page/User/{userId}")
 	public ResponseEntity<ListingResponse>searchByUserPageination(@PathVariable ("userId")Integer userId,
-							@RequestParam (value = "pageNo",defaultValue = "0" ,required = false )Integer pageNo,
-							@RequestParam (value = "pageSize",defaultValue = "0",required = false )Integer pageSize)
+							@RequestParam (value = "pageNo",defaultValue = AppConstant.PAGE_NO ,required = false )Integer pageNo,
+							@RequestParam (value = "pageSize",defaultValue = AppConstant.PAGE_SIZE,required = false )Integer pageSize)
 									throws UsersNotfoundException,ListingNotFoundException{
 		return new ResponseEntity<ListingResponse>(listingService.getAllListingByUser(userId, pageNo, pageSize),HttpStatus.ACCEPTED);
 	}

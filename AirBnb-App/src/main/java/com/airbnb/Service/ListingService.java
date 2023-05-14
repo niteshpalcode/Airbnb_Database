@@ -28,4 +28,6 @@ public interface ListingService {
 	
 	public List<ListingDTO> searchByDescription(String key); 
 	
+//	sortby normal id---- accsending
+	
 }

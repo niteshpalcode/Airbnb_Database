@@ -102,4 +102,14 @@ public class GlobalExceptionHandler {
 
 		return new ResponseEntity<MyErrorDetails>(error, HttpStatus.BAD_REQUEST);
 	}
+	@ExceptionHandler(ListingAmenitiesException.class)
+	public ResponseEntity<MyErrorDetails> myListingNFEHandler(ListingAmenitiesException ln, WebRequest wr) {
+
+		MyErrorDetails error = new MyErrorDetails();
+		error.setTimestamp(LocalDateTime.now());
+		error.setMessage(ln.getMessage());
+		error.setDescription(wr.getDescription(false));
+
+		return new ResponseEntity<MyErrorDetails>(error, HttpStatus.BAD_REQUEST);
+	}
 }
