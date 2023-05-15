@@ -48,6 +48,7 @@ public class Users  implements UserDetails{
 	private String lastname;
 	@Column(name = "email",length=100)
 	private String email;
+//	@JsonIgnore
 	@Column(name = "password")
 	private String password;
 	

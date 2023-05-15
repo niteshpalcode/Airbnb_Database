@@ -43,5 +43,6 @@ public class AirBnbAppApplication implements CommandLineRunner{
 		List<Roles> resullt= roleRepository.saveAll(listofRoles);
 		resullt.forEach(s->System.out.println(s.getRoleName()));
 	}
+	
 
 }

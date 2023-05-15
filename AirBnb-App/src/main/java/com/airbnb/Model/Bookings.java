@@ -1,11 +1,14 @@
 package com.airbnb.Model;
 
 
+import java.time.LocalDate;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -32,12 +35,13 @@ public class Bookings {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer bookingId;
 	@Column(name ="check_in" )
-	private Date checkIn;
+	private LocalDate checkIn;
 	@Column(name ="check_out" )
-	private Date checkOut;
+	private LocalDate checkOut;
 	@Column(name ="total_price" )
 	private double totalPrice;
-	private String status;
+//	@Enumerated(EnumType.STRING)
+    private String status;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 //	@JoinTable(name = "guest_id")
@@ -48,4 +52,9 @@ public class Bookings {
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn (name = "listing_id")
 	private Listing listing;
+
+
+	
+
+
 }
