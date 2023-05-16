@@ -94,14 +94,14 @@ public class BookingServiceImpl  implements BookingService{
 
 		    BookingDTO booking = modelMapper.map(bookings, BookingDTO.class);
 
-		    // Map usersDTO
+		   
 		    UserDTO1 userDTO = modelMapper.map(bookings.getUsers(), UserDTO1.class);
 		    booking.setUsersDTO(userDTO);
 
-		    // Map listingDTO
+		    
 		    ListingDTO1 listingDTO = modelMapper.map(bookings.getListing(), ListingDTO1.class);
 
-		    // Map locationDTO
+		  
 		    LocationDTO locationDTO = modelMapper.map(bookings.getListing().getLocation(), LocationDTO.class);
 		    listingDTO.setLocationDTO(locationDTO);
 
